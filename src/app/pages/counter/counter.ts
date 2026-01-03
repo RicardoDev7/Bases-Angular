@@ -7,6 +7,16 @@ import { Component, signal, WritableSignal } from "@angular/core";
 export class Counter {
   counter : number = 1;
   counterSignal: WritableSignal<number> = signal(1);
+
+  /*
+  constructor(){
+    setInterval(() => {
+      //this.counter += 1;
+      this.counterSignal.update(current => current + 1);
+    }, 2000);
+  }
+  */
+
   increaseByOne() : void {
     this.counter += 1;
     this.counterSignal.update(current => current + 1);
