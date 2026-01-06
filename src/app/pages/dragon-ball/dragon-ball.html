@@ -14,7 +14,11 @@
         <li>
           <span class="badge bg-secondary me-2">{{character.id}}</span>
           <span>{{character.name}}</span>
-          <strong class="text-danger"> ({{character.power}})</strong>
+          <!--<strong
+          [class.text-danger]="character.power > 9000"
+          [class.text-info]="character.power < 9000"
+          > ({{character.power}})</strong>-->
+          <strong [ngClass]="powerClasses()(character.power)">({{character.power}})</strong>
         </li>
       }
     </ul>

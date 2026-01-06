@@ -1,5 +1,6 @@
 
-import { Component, signal, WritableSignal } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, computed, signal, WritableSignal } from '@angular/core';
 
 interface Character {
   id: number;
@@ -8,7 +9,8 @@ interface Character {
 }
 
 @Component({
-  templateUrl: '../dragon-ball/dragon-ball.html'
+  templateUrl: '../dragon-ball/dragon-ball.html',
+  imports: [NgClass]
 })
 export class DragonBall {
   characters: WritableSignal<Character[]> = signal<Character[]>([
@@ -16,4 +18,10 @@ export class DragonBall {
     { id: 2, name: 'Vegeta', power: 8500 },
     { id: 3, name: 'Piccolo', power: 7000 }
   ]);
+  powerClasses = computed(() => {
+    return (power: number) => ({
+      'text-danger': power > 9000,
+      'text-info': power <= 9000
+    })
+  });
 }
