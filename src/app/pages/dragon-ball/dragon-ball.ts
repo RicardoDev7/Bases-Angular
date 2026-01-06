@@ -1,5 +1,5 @@
 
-import { Component, signal, WritableSignal } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
   templateUrl: '../dragon-ball/dragon-ball.html'
