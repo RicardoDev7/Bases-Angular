@@ -11,15 +11,19 @@
     <h3>Listado</h3>
     <ul>
       @for (character of characters(); track character.id) {
-        <li>
-          <span class="badge bg-secondary me-2">{{character.id}}</span>
-          <span>{{character.name}}</span>
-          <!--<strong
-          [class.text-danger]="character.power > 9000"
-          [class.text-info]="character.power < 9000"
-          > ({{character.power}})</strong>-->
-          <strong [ngClass]="powerClasses()(character.power)">({{character.power}})</strong>
-        </li>
+        @if (character.power > 500) {
+          <li>
+            <span class="badge bg-secondary me-2">{{character.id}}</span>
+            <span>{{character.name}}</span>
+            <!--<strong
+            [class.text-danger]="character.power > 9000"
+            [class.text-info]="character.power < 9000"
+            > ({{character.power}})</strong>-->
+            <strong [ngClass]="powerClasses()(character.power)">({{character.power}})</strong>
+          </li>
+        } @else {
+          <li><strong>Aqui no hay nadie</strong></li>
+        }
       }
     </ul>
   </div>
