@@ -9,10 +9,14 @@
   </div>
   <div class="col-12 col-sm-6">
     <h3>Listado</h3>
-    <ol>
-      <li>Goku - Poder: 9000</li>
-      <li>Vegeta - Poder: 8500</li>
-      <li>Piccolo - Poder: 7000</li>
-    </ol>
+    <ul>
+      @for (character of characters(); track character.id) {
+        <li>
+          <span class="badge bg-secondary me-2">{{character.id}}</span>
+          <span>{{character.name}}</span>
+          <strong class="text-danger"> ({{character.power}})</strong>
+        </li>
+      }
+    </ul>
   </div>
 </section>
