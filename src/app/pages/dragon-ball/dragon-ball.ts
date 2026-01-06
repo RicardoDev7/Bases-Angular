@@ -10,7 +10,8 @@ interface Character {
 
 @Component({
   templateUrl: '../dragon-ball/dragon-ball.html',
-  imports: [NgClass]
+  imports: [NgClass],
+  template: ``
 })
 export class DragonBall {
   characters: WritableSignal<Character[]> = signal<Character[]>([
