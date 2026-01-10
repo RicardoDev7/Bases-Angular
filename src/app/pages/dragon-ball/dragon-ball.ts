@@ -48,5 +48,11 @@ export class DragonBall {
       power: this.power()
     };
     this.characters.update(chars => [...chars, newCharacter]);
+    this.resetFields();
+  }
+
+  resetFields(){
+    this.name.set('');
+    this.power.set(0);
   }
 }
