@@ -1,0 +1,17 @@
+<h3>Agregar: {{name()}}</h3>
+
+<input type="text"
+class="form-control"
+placeholder="Nombre del personaje"
+[value]="name()"
+(change)="changeName($event.target.value)" />
+
+<input type="number"
+class="form-control mt-2"
+placeholder="Poder del personaje"
+[value]="power()"
+(change)="changePower(txtPower.value)"
+#txtPower />
+
+<button class="mt-2 btn btn-primary"
+(click)="addCharacter()">Agregar</button>

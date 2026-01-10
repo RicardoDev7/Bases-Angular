@@ -1,27 +1,19 @@
-
-import { NgClass } from '@angular/common';
-import { Component, computed, signal, WritableSignal } from '@angular/core';
-import { CharacterList } from "../../components/dragonball/character-list/character-list";
-import { CharacterAdd } from "../../components/dragonball/character-add/character-add";
-
-interface Character {
-  id: number;
-  name: string;
-  power: number;
-}
+import { ChangeDetectionStrategy, Component, computed, input, InputSignal, signal, WritableSignal } from '@angular/core';
+import { Character } from '../../../interfaces/character.interface';
 
 @Component({
-  templateUrl: '../dragon-ball-super/dragon-ball-super.html',
-  imports: [CharacterList, CharacterAdd],
-  template: ``
+  selector: 'dragonball-character-add',
+  templateUrl: './character-add.html',
 })
-export class DragonBallSuper {
-
+export class CharacterAdd {
   name: WritableSignal<string> = signal('');
   power: WritableSignal<number> = signal(0);
 
   characters: WritableSignal<Character[]> = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 }
+    { id: 1, name: 'Goku', power: 9001 },
+    { id: 2, name: 'Vegeta', power: 8500 },
+    { id: 3, name: 'Piccolo', power: 7000 },
+    { id: 4, name: 'Yancha', power: 500 }
   ]);
 
   powerClasses = computed(() => {

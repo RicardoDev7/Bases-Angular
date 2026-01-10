@@ -1,0 +1,14 @@
+<h3>{{listName()}}</h3>
+<ul>
+  @for (character of characters(); track character.id) {
+    @if (character.power > 500) {
+      <li>
+        <span class="badge bg-secondary me-2">{{character.id}}</span>
+        <span>{{character.name}}</span>
+        <strong [ngClass]="powerClasses()(character.power)"> ({{character.power}})</strong>
+      </li>
+    } @else {
+      <li><strong>Aquí no hay nadie</strong></li>
+    }
+  }
+</ul>
