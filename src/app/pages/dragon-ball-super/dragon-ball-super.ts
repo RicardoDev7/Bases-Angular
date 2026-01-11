@@ -39,15 +39,8 @@ export class DragonBallSuper {
     this.power.set(Number(value));
   }
 
-  addCharacter() : void {
-    if(!this.name() || !this.power() || this.power() <= 0) return;
-    const newCharacter: Character = {
-      id: this.characters().length + 1,
-      name: this.name(),
-      power: this.power()
-    };
+  addCharacter(newCharacter: Character) : void {
     this.characters.update(chars => [...chars, newCharacter]);
-    this.resetFields();
   }
 
   resetFields(){

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, InputSignal, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, InputSignal, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
 import { Character } from '../../../interfaces/character.interface';
 
 @Component({
@@ -8,6 +8,8 @@ import { Character } from '../../../interfaces/character.interface';
 export class CharacterAdd {
   name: WritableSignal<string> = signal('');
   power: WritableSignal<number> = signal(0);
+
+  newCharacter: OutputEmitterRef<Character> = output<Character>();
 
   characters: WritableSignal<Character[]> = signal<Character[]>([
     { id: 1, name: 'Goku', power: 9001 },
@@ -34,11 +36,11 @@ export class CharacterAdd {
   addCharacter() : void {
     if(!this.name() || !this.power() || this.power() <= 0) return;
     const newCharacter: Character = {
-      id: this.characters().length + 1,
+      id: Math.floor(Math.random() * 10000),
       name: this.name(),
       power: this.power()
     };
-    this.characters.update(chars => [...chars, newCharacter]);
+    this.newCharacter.emit(newCharacter);
     this.resetFields();
   }
 
