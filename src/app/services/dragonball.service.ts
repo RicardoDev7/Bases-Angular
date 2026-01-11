@@ -3,9 +3,6 @@ import { Character } from '../interfaces/character.interface';
 
 function loadFromLocalStorage(): Character[] {
   const data = localStorage.getItem('dragonball-characters');
-  if(data){
-
-  }
   return data ? JSON.parse(data) : [];
 }
 
