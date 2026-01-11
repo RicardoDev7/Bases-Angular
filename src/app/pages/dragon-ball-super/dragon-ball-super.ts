@@ -1,8 +1,9 @@
 
 import { NgClass } from '@angular/common';
-import { Component, computed, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { CharacterList } from "../../components/dragonball/character-list/character-list";
 import { CharacterAdd } from "../../components/dragonball/character-add/character-add";
+import { DragonBallService } from '../../services/dragonball.service';
 
 interface Character {
   id: number;
@@ -17,34 +18,7 @@ interface Character {
 })
 export class DragonBallSuper {
 
-  name: WritableSignal<string> = signal('');
-  power: WritableSignal<number> = signal(0);
+  public dragonballService = inject(DragonBallService);
+  public powerClasses = this.dragonballService.powerClasses;
 
-  characters: WritableSignal<Character[]> = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 }
-  ]);
-
-  powerClasses = computed(() => {
-    return (power: number) => ({
-      'text-danger': power > 9000,
-      'text-info': power <= 9000
-    })
-  });
-
-  changeName(value: string): void {
-    this.name.set(value);
-  }
-
-  changePower(value: string) : void {
-    this.power.set(Number(value));
-  }
-
-  addCharacter(newCharacter: Character) : void {
-    this.characters.update(chars => [...chars, newCharacter]);
-  }
-
-  resetFields(){
-    this.name.set('');
-    this.power.set(0);
-  }
 }
